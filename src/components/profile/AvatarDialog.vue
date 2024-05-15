@@ -42,11 +42,11 @@ import { useProfileStore } from "@stores";
 import { Form } from "@helpers/form.js";
 import { getRemoteAsset } from "@helpers/file.js";
 
-import avatar1 from "@/assets/avatars/avatar_0.svg";
-import avatar2 from "@/assets/avatars/avatar_F_1.svg";
-import avatar3 from "@/assets/avatars/avatar_F_2.svg";
-import avatar4 from "@/assets/avatars/avatar_m_1.svg";
-import avatar5 from "@/assets/avatars/avatar_m_2.svg";
+import avatar1 from "/avatars/avatar_0.svg";
+import avatar2 from "/avatars/avatar_F_1.svg";
+import avatar3 from "/avatars/avatar_F_2.svg";
+import avatar4 from "/avatars/avatar_m_1.svg";
+import avatar5 from "/avatars/avatar_m_2.svg";
 
 export default {
   name: "ProfileView",
@@ -66,11 +66,6 @@ export default {
       { label: "Avatar F 2", path: avatar3 },
       { label: "Avatar M 1", path: avatar4 },
       { label: "Avatar M 2", path: avatar5 },
-      // { label: "Avatar 0", path: "/src/assets/avatars/avatar_0.svg" },
-      // { label: "Avatar F 1", path: "/src/assets/avatars/avatar_F_1.svg" },
-      // { label: "Avatar F 2", path: "/src/assets/avatars/avatar_F_2.svg" },
-      // { label: "Avatar M 1", path: "/src/assets/avatars/avatar_M_1.svg" },
-      // { label: "Avatar M 2", path: "/src/assets/avatars/avatar_M_2.svg" },
     ],
     file: null,
   }),
@@ -86,7 +81,6 @@ export default {
     onAvatarSelect(item) {
       // console.log("Selected Item Path:", item.path);
       let originalFileName = item.path.split("/").pop();
-
       fetch(item.path)
         .then((res) => res.blob())
         .then((blob) => {

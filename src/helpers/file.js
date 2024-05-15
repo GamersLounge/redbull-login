@@ -21,5 +21,5 @@ export function getLocalImage(fileName) {
 }
 
 export function getLocalAvatar(fileName) {
-  return new URL(`../assets/avatars/${fileName}`, import.meta.url).href;
+  return new URL(`/avatars/${fileName}`, import.meta.url).href;
 }
