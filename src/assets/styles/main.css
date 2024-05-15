@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url("../fonts/Poppins-Medium.ttf");
+}
+@font-face {
+  font-family: "Poppins-light";
+  src: url("../fonts/Poppins-Light.ttf");
+}
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+.font-poppins-light {
+  font-family: "Poppins-light" !important;
+}
+.font-poppins-medium {
+  font-family: "Poppins-Medium" !important;
+}
+.font-poppins-regular {
+  font-family: "Poppins-Regular" !important;
+}
+
+#app {
+  font-family: "Poppins-Regular";
+}
+
+a {
+  text-decoration: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.no-uppercase {
+  text-transform: none;
+}
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+input:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: rgb(var(--v-theme-primary));
+  transition: 0.1s;
+}
+
+.activeLink:hover {
+  color: rgb(var(--v-theme-primary-lighten-1));
+}
