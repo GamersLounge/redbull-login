@@ -5,17 +5,15 @@
         Edit Avatar
       </v-card-title>
 
-      <v-form id="securityForm" ref="securityForm" @submit.prevent="updateAvatar">
-        <v-row class="ma-0">
-          <ErrorsInput :errors="v$.selectedAvatar.$errors" :vuelidateErrors="true" />
-        </v-row>
-
+      <v-form id="avatarForm" ref="avatarForm" class="py-3" @submit.prevent="updateAvatar">
         <v-select
           v-model="v$.selectedAvatar.$model"
           :items="avatarOptions"
           item-title="label"
           return-object
           label="Choose an avatar"
+          variant="outlined"
+          hide-details="auto"
           @update:modelValue="onAvatarSelect"
         >
           <template #item="{ item, props: { onClick } }">
@@ -27,7 +25,10 @@
             <v-divider :thickness="1" class="border-opacity-100 my-3"></v-divider>
           </template>
         </v-select>
-        <input type="file" ref="fileInput" style="display: none" @change="onFileChange" />
+
+        <v-row class="ma-0">
+          <ErrorsInput :errors="v$.selectedAvatar.$errors" :vuelidateErrors="true" />
+        </v-row>
       </v-form>
 
       <v-card-actions class="justify-end pa-0">
