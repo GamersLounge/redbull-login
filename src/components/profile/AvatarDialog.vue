@@ -6,8 +6,12 @@
       </v-card-title>
 
       <v-form id="securityForm" ref="securityForm" @submit.prevent="updateAvatar">
+        <v-row class="ma-0">
+          <ErrorsInput :errors="v$.selectedAvatar.$errors" :vuelidateErrors="true" />
+        </v-row>
+
         <v-select
-          v-model="selectedAvatar"
+          v-model="v$.selectedAvatar.$model"
           :items="avatarOptions"
           item-title="label"
           return-object
@@ -40,17 +44,22 @@ import { useProfileStore } from "@stores";
 
 // Helpers
 import { Form } from "@helpers/form.js";
-import { getRemoteAsset } from "@helpers/file.js";
 
 import avatar1 from "/avatars/avatar_0.svg";
 import avatar2 from "/avatars/avatar_F_1.svg";
 import avatar3 from "/avatars/avatar_F_2.svg";
 import avatar4 from "/avatars/avatar_m_1.svg";
 import avatar5 from "/avatars/avatar_m_2.svg";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 
 export default {
   name: "ProfileView",
-
+  validations() {
+    return {
+      selectedAvatar: { required },
+    };
+  },
   components: {},
 
   data: () => ({
@@ -98,7 +107,10 @@ export default {
       this.dialog = false;
     },
 
-    updateAvatar() {
+    async updateAvatar() {
+      const isFormCorrect = await this.v$.$validate();
+      if (!isFormCorrect) return;
+
       const userId = this.profile.id;
       this.profileStore
         .updateProfile(userId, this.profileForm)
@@ -116,14 +128,8 @@ export default {
   },
 
   setup() {
-    return {
-      avatar1,
-      avatar2,
-      avatar3,
-      avatar4,
-      avatar5,
-      getRemoteAsset,
-    };
+    const v$ = useVuelidate();
+    return { v$, avatar1, avatar2, avatar3, avatar4, avatar5 };
   },
 
   created() {
