@@ -28,6 +28,9 @@ import GamesView from "@views/dashboard/GamesView.vue";
 import LogsView from "@views/dashboard/LogsView.vue";
 import ScoresView from "@views/dashboard/ScoresView.vue";
 
+// Roles
+import roles from "@/helpers/roles";
+
 // Application routes
 const routes = [
   {
@@ -59,13 +62,13 @@ const routes = [
             path: "/activations",
             name: "activations",
             component: ActivationsView,
-            meta: { middlewares: [isAuthorized("User")] },
+            meta: { middlewares: [isAuthorized(roles.User)] },
           },
           {
             path: "/quests",
             name: "quests",
             component: QuestsView,
-            meta: { middlewares: [isAuthorized("User")] },
+            meta: { middlewares: [isAuthorized(roles.User)] },
           },
         ],
       },
@@ -92,14 +95,14 @@ const routes = [
         name: "queues",
         component: QueuesView,
         meta: {
-          middlewares: [isAuthenticated, isAuthorized("GameAdmin", "TriviaAdmin")],
+          middlewares: [isAuthenticated, isAuthorized(roles.GameAdmin, roles.TriviaAdmin)],
         },
       },
       {
         path: "/trivia",
         name: "trivia",
         component: TriviaView,
-        meta: { middlewares: [isAuthenticated, isAuthorized("TriviaAdmin")] },
+        meta: { middlewares: [isAuthenticated, isAuthorized(roles.TriviaAdmin)] },
       },
     ],
   },
@@ -108,7 +111,7 @@ const routes = [
     name: "dashboard",
     component: DashboardLayout,
     redirect: { name: "dashboard.users" },
-    meta: { middlewares: [isAuthenticated, isAuthorized("Administrator")] },
+    meta: { middlewares: [isAuthenticated, isAuthorized(roles.Administrator)] },
     children: [
       {
         path: "users",
