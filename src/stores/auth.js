@@ -15,15 +15,15 @@ export const useAuthStore = defineStore("auth", {
   }),
 
   getters: {
-    isAdministrator: (state) => state.user?.role === "Administrator",
+    isAdministrator: (state) => state.user?.roleId === 1,
 
-    isGameAdmin: (state) => state.user?.role === "GameAdmin",
+    isGameAdmin: (state) => state.user?.roleId === 2,
 
-    isTriviaAdmin: (state) => state.user?.role === "TriviaAdmin",
+    isTriviaAdmin: (state) => state.user?.roleId === 3,
 
-    isScoreAdmin: (state) => state.user?.role === "ScoreAdmin",
+    isScoreAdmin: (state) => state.user?.roleId === 4,
 
-    isUser: (state) => state.user?.role === "User",
+    isUser: (state) => state.user?.roleId === 5,
   },
 
   actions: {
@@ -92,8 +92,8 @@ export const useAuthStore = defineStore("auth", {
     },
 
     setUser(user) {
-      const { id, uuid, email, username, avatar, role } = user;
-      this.user = { id, uuid, email, username, avatar, role };
+      const { id, uuid, email, username, avatar, roleId } = user;
+      this.user = { id, uuid, email, username, avatar, roleId };
     },
 
     async register(form) {
