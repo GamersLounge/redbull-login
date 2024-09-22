@@ -16,6 +16,7 @@ import HomeView from "@/views/HomeView.vue";
 import ProfileView from "@views/ProfileView.vue";
 import ActivationsView from "@views/ActivationsView.vue";
 import QuestsView from "@views/QuestsView.vue";
+import UserGamesView from "@/views/UserGamesView.vue";
 
 import QueuesView from "@views/QueuesView.vue";
 import TriviaView from "@views/TriviaView.vue";
@@ -68,6 +69,12 @@ const routes = [
             path: "/quests",
             name: "quests",
             component: QuestsView,
+            meta: { middlewares: [isAuthorized(roles.User)] },
+          },
+          {
+            path: "/userGames",
+            name: "userGames",
+            component: UserGamesView,
             meta: { middlewares: [isAuthorized(roles.User)] },
           },
         ],

@@ -37,6 +37,15 @@
       </v-list-item>
 
       <v-list-item
+        v-if="authStore.isUser"
+        :to="{ name: 'userGames' }"
+        exact
+        class="font-poppins-light"
+      >
+        Games
+      </v-list-item>
+
+      <v-list-item
         v-if="authStore.isTriviaAdmin"
         :to="{ name: 'trivia' }"
         exact
