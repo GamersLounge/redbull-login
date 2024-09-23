@@ -21,7 +21,7 @@ export function initializeUnity(canvasId) {
         updateBannerVisibility();
     }
 
-    var buildUrl = "/src/Build";
+    var buildUrl = "/Build";
     var loaderUrl = buildUrl + "/New folder.loader.js";
     var config = {
         arguments: [],
