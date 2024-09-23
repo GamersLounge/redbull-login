@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="scoreDisplay">Score: 0</div>
+        <!-- <div id="scoreDisplay">Score: 0</div> -->
         <div id="unity-container" class="unity-desktop">
             <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
             <div id="unity-loading-bar">
