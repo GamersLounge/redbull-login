@@ -13,9 +13,9 @@
         width="125"
         :src="getRemoteAsset(profile.avatar) || getLocalAvatar('avatar_0.svg')"
       >
-        <v-badge :content="''" color="blue" overlap offset-x="12" offset-y="12" class="edit-badge">
+        <v-badge :content="''" color="white" overlap offset-x="12" offset-y="12" class="edit-badge">
           <template #badge>
-            <v-icon color="white" @click="editImageDialog"> mdi-pencil </v-icon>
+            <v-icon color="black" @click="editImageDialog"> mdi-pencil </v-icon>
           </template>
         </v-badge>
       </v-img>

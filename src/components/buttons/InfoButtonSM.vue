@@ -49,9 +49,9 @@ export default {
 
 .gradient-bg {
   background: linear-gradient(
-    to right,
-    rgb(var(--v-theme-dark-blue)) 10%,
-    rgb(var(--v-theme-light-blue)) 90%
+    270deg,
+    rgb(var(--v-theme-dark-blue)) 0%,
+    rgb(var(--v-theme-basic-text)) 100%
   );
 }
 </style>

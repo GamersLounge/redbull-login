@@ -12,34 +12,35 @@
       <InfoButtonLG
         class="ma-3"
         :value="'Name: ' + profile.username"
-        :textColor="'text-light-blue'"
-        :bgColor="'bg-grey'"
+        :textColor="'text-white'"
+        :bgColor="'custom-btn'"
       />
 
       <InfoButtonLG
         class="ma-3"
         :value="'UUID: ' + profile.uuid"
-        :textColor="'text-light-blue'"
-        :bgColor="'bg-grey'"
+        :textColor="'text-black'"
+        :bgColor="'bg-container'"
       />
       <InfoButtonLG
         class="ma-3"
         :value="'Score: ' + profileStore.totalScore"
-        :textColor="'text-light-blue'"
-        :bgColor="'bg-grey'"
+        :textColor="'text-black'"
+        :bgColor="'bg-container'"
       />
 
       <InfoButtonLG
         class="ma-3"
         :value="'Rank: ' + profile.rank"
-        :textColor="'text-light-blue'"
-        :bgColor="'bg-grey'"
+        :textColor="'text-black'"
+        :bgColor="'bg-container'"
       />
 
       <InfoButtonLG
         class="ma-3 cursor-pointer"
         :value="'Start Playing'"
-        :isGradient="true"
+        :textColor="'text-white'"
+        :bgColor="'custom-btn'"
         @click="goToActivations()"
       />
     </v-row>
@@ -86,4 +87,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom-btn {
+  background: linear-gradient(
+    270deg,
+    rgb(var(--v-theme-dark-blue)) 0%,
+    rgb(var(--v-theme-basic-text)) 100%
+  );
+}
+</style>

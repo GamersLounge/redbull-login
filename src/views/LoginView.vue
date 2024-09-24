@@ -40,7 +40,7 @@
         <v-row class="ma-0 px-1 py-2">
           <router-link
             to="/forgot-password"
-            class="font-poppins-regular text-decoration-none text-light-blue forgot-password"
+            class="font-poppins-regular text-decoration-none text-basic-text forgot-password"
           >
             Forgot password?
           </router-link>

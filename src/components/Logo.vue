@@ -1,6 +1,6 @@
 <template>
   <v-row class="ma-0 justify-center">
-    <img class="logo" src="@assets/images/redbull-logo.svg" alt="" srcset="" />
+    <img class="logo" src="@assets/images/arena-logo.svg" alt="" srcset="" />
   </v-row>
 </template>
 

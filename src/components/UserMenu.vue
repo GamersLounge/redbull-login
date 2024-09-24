@@ -12,7 +12,7 @@
       </v-btn>
     </template>
 
-    <v-card min-width="220px" class="bg-red text-white pa-3 user-menu-card">
+    <v-card min-width="220px" class="bg-black text-white pa-3 user-menu-card">
       <!-- Navigation -->
       <div class="text-start">
         <v-btn
@@ -54,10 +54,10 @@
   </v-menu>
 
   <div v-else-if="$route.name == 'profile'" class="px-2 text-h6">
-    <v-icon v-if="!isEditing" class="cursor-pointer text-light-blue" @click="isEditing = true">
+    <v-icon v-if="!isEditing" class="cursor-pointer text-black" @click="isEditing = true">
       mdi-pencil
     </v-icon>
-    <v-icon v-if="isEditing" class="cursor-pointer text-light-blue" @click="isEditing = false">
+    <v-icon v-if="isEditing" class="cursor-pointer text-black" @click="isEditing = false">
       mdi-close
     </v-icon>
   </div>

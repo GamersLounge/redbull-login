@@ -15,16 +15,17 @@ const vuetify = createVuetify({
         colors: {
           background: "#FFFF",
           white: "#FFFF",
-          black: "#FFFF",
+          black: "#0000",
           // primary: "#153B8B",
           // secondary: "#FEC43B",
           // action: "#E31A4C",
 
-          "basic-text": "#4A4C72",
-          "dark-blue": "#081241",
-          "light-blue": "#22389b",
+          "basic-text": "#231f20",
+          "dark-blue": "#4D4648",
+          "light-blue": "#635B5D",
           red: "#d3003e",
           grey: "#dde0ed",
+          container: "#DFDFDF",
 
           error: "#bc0000",
 

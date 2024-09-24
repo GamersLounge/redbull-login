@@ -92,7 +92,7 @@
                     dialog = true;
                     gameDialog = game;
                   "
-                  :textColor="'text-light-blue'"
+                  :textColor="'text-black'"
                 />
 
                 <v-spacer></v-spacer>
@@ -162,7 +162,7 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn class="dialog-close-icon mt--4 text-white bg-light-blue" @click="dialog = false">
+          <v-btn class="dialog-close-icon mt--4 text-white bg-black" @click="dialog = false">
             x
           </v-btn>
         </v-row>
@@ -299,13 +299,13 @@ export default {
   height: 36px !important;
 }
 .active-selection-btn {
-  background: rgb(var(--v-theme-red)) !important;
+  background: rgb(var(--v-theme-black)) !important;
   color: rgb(var(--v-theme-white)) !important;
   border: unset !important;
 }
 .view-icon {
   font-size: 2rem;
-  color: rgb(var(--v-theme-light-blue));
+  color: rgb(var(--v-theme-light-black));
 }
 
 .description-btn {

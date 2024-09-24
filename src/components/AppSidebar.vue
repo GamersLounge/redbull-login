@@ -76,9 +76,9 @@ export default {
 <style scoped>
 .drawer {
   background: linear-gradient(
-    to bottom,
-    rgb(var(--v-theme-dark-blue)) 1%,
-    rgb(var(--v-theme-light-blue)) 99%
+    30deg,
+    rgb(var(--v-theme-dark-blue)) 10%,
+    rgb(var(--v-theme-basic-text)) 90%
   );
   color: rgb(var(--v-theme-white));
 }

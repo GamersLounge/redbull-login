@@ -10,7 +10,7 @@
       "
       variant="text"
       @click.stop="appStore.drawer = !appStore.drawer"
-      class="text-primary"
+      class="text-black"
       density="compact"
     />
 
@@ -27,12 +27,12 @@
     </v-app-bar-title> -->
 
     <template v-slot:append>
-      <h3 v-if="authStore.isAuthenticated && authStore.isUser" class="px-1 text-light-blue">
+      <h3 v-if="authStore.isAuthenticated && authStore.isUser" class="px-1 text-black">
         Rank {{ profileStore?.profile?.rank ?? "-" }}
         <!-- {{ authStore.user.username }} -->
       </h3>
 
-      <h3 v-if="authStore.isAuthenticated && authStore.isUser" class="px-4 text-light-blue">
+      <h3 v-if="authStore.isAuthenticated && authStore.isUser" class="px-4 text-black">
         Score: {{ profileStore.totalScore }}
       </h3>
 
