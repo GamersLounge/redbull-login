@@ -1,97 +1,45 @@
 <template>
-    <div>
-        <div id="scoreDisplay">Score: 0</div>
-        <div id="unity-container" class="unity-desktop">
-            <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
-            <div id="unity-loading-bar">
-                <div id="unity-logo"></div>
-                <div id="unity-progress-bar-empty">
-                    <div id="unity-progress-bar-full"></div>
-                </div>
-            </div>
-            <div id="unity-warning"></div>
-            <div id="unity-footer">
-                <div id="unity-logo-title-footer"></div>
-                <div id="unity-fullscreen-button"></div>
-            </div>
-        </div>
-    </div>
+    <v-container v-if="!isGameSelected">
+        <h1 class="text-center">Games</h1>
+        <v-row justify="center" align="center">
+            <v-col v-for="(game, index) in games" :key="index" cols="12" md="4">
+                <v-card @click="onCardClick()" class="mx-auto" max-width="400">
+                    <v-img :src="game.image" height="200px"></v-img>
+                    <v-card-title>{{ game.name }}</v-card-title>
+                    <v-card-text>{{ game.description }}</v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
+
+    <unity-game v-else />
 </template>
 
 <script>
-import { initializeUnity } from '@/helpers/UnityLogic';
-
+import UnityGame from '@/components/UnityGame.vue';
 export default {
-    name: 'UnityGame',
-    mounted() {
-        initializeUnity('#unity-canvas');
+    components: { UnityGame },
+    data() {
+        return {
+            isGameSelected: false, // Control whether a game is selected
+            selectedGame: null,    // Holds the selected game
+            games: [
+                { name: "Game 1", description: "Description of Game 1", image: "https://via.placeholder.com/400x200" },
+                { name: "Game 2", description: "Description of Game 2", image: "https://via.placeholder.com/400x200" },
+                { name: "Game 3", description: "Description of Game 3", image: "https://via.placeholder.com/400x200" }
+            ]
+        };
+    },
+    methods: {
+        onCardClick() {
+            this.isGameSelected = true;
+        },
     }
-}
+};
 </script>
 
 <style scoped>
-#scoreDisplay {
-    color: red;
-    font-size: 50px;
-    font-weight: bold;
-    font-family: sans-serif;
-    display: none;
-}
-
-#unity-container {
-    position: relative;
-}
-
-#unity-loading-bar {
-    display: none;
-}
-
-#unity-container.unity-mobile {
-    position: fixed;
-    width: 100%;
-    height: 100%
-}
-
-#unity-canvas {
-    background: #804446
-}
-
-.unity-mobile #unity-canvas {
-    width: 100%;
-    height: 100%
-}
-
-#unity-loading-bar {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: none
-}
-
-#unity-footer {
-    position: relative
-}
-
-.unity-mobile #unity-footer {
-    display: none
-}
-
-#unity-build-title {
-    float: right;
-    margin-right: 10px;
-    line-height: 38px;
-    font-family: arial;
-    font-size: 18px
-}
-
-#unity-warning {
-    position: absolute;
-    left: 50%;
-    top: 5%;
-    transform: translate(-50%);
-    background: white;
-    padding: 10px;
-    display: none
+.text-center {
+    text-align: center;
 }
 </style>
