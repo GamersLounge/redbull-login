@@ -18,7 +18,7 @@
       v-if="authStore.isGameAdmin || authStore.isScoreAdmin || authStore.isTriviaAdmin"
       class="app-bar-logo cursor-pointer"
       alt="Your Logo"
-      src="@assets/images/redbull-logo.svg"
+      src="@assets/images/arena-logo.svg"
       @click="$router.push('/')"
     />
 
@@ -78,7 +78,7 @@ export default {
 
 <style scoped>
 .app-bar-logo {
-  max-width: 50px;
+  max-width: 80px;
   margin: 0px 30px;
 }
 </style>
