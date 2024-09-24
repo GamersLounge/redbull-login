@@ -22,12 +22,12 @@ export function initializeUnity(canvasId) {
     }
 
     var buildUrl = "/Build";
-    var loaderUrl = buildUrl + "/New folder.loader.js";
+    var loaderUrl = buildUrl + "/Game.loader.js";
     var config = {
         arguments: [],
-        dataUrl: buildUrl + "/New folder.data",
-        frameworkUrl: buildUrl + "/New folder.framework.js",
-        codeUrl: buildUrl + "/New folder.wasm",
+        dataUrl: buildUrl + "/Game.data",
+        frameworkUrl: buildUrl + "/Game.framework.js",
+        codeUrl: buildUrl + "/Game.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "EugenyN",
         productName: "AmazingTrack",
@@ -47,6 +47,7 @@ export function initializeUnity(canvasId) {
         canvas.style.height = "1080px";
     }
 
+    canvas.style.background = "url('" + buildUrl + "/Game.jpg') center / cover";
     document.querySelector("#unity-loading-bar").style.display = "block";
 
     var script = document.createElement("script");
