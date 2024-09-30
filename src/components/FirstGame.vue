@@ -1,7 +1,7 @@
 <template>
     <div>
         <button id="closeGameButton" @click="goBack">
-            <svg fill="#000000" height="50px" width="50px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+            <svg fill="#ffffff" height="50px" width="50px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 476.213 476.213" xml:space="preserve">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -48,13 +48,6 @@ export default {
         setInterval(() => {
             this.score = Number(document.getElementById('scoreDisplay').innerText);
         }, 1000);
-    },
-
-    computed: {
-        // Computed property to display the formatted score
-        formattedScore() {
-            return this.score
-        }
     },
 
     watch: {
