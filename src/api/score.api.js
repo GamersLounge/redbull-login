@@ -24,4 +24,10 @@ export const ScoreAPI = {
   getUserScore(data) {
     return axios.get(`/score/${data.userId}/game/${data.gameId}`);
   },
+  setGameWinScore(userId, gameId, points) {
+    const requestBody = {
+      points: points,
+    }
+    return axios.post(`/score/winner/${userId}/game/${gameId}`, requestBody);
+  }
 };

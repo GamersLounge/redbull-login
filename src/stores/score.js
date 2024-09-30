@@ -10,6 +10,18 @@ export const useScoreStore = defineStore("score", {
   getters: {},
 
   actions: {
+    async setGameWinScore(userId, gameId, points) {
+      return new Promise((resolve, reject) => {
+        ScoreAPI.setGameWinScore(userId, gameId, points)
+          .then((res) => {
+            resolve(res.data);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
     async fetchScores() {
       this.isScoresLoaded = false;
       return new Promise((resolve, reject) => {
