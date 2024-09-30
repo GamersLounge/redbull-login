@@ -12,7 +12,7 @@
                 </g>
             </svg>
         </button>
-        <div id="scoreDisplay">Score: 0</div>
+        <div id="scoreDisplay">0</div>
         <div id="unity-container" class="unity-desktop">
             <canvas id="unity-canvas" width=960 height=600 tabindex="-1"
                 style="background: url('/secondGame/secondGame.jpg') center / cover"></canvas>
@@ -22,17 +22,51 @@
 
 <script>
 import { initializeUnity } from '@/helpers/UnityLogic';
+import { useProfileStore, useScoreStore } from '@/stores';
+import { mapActions } from 'pinia';
 
 export default {
     name: 'UnityGame',
+
+    data() {
+        return {
+            userData: null,
+            score: 0,
+        };
+    },
+
     mounted() {
         initializeUnity('#unity-canvas', 'secondGame');
+
+        this.getData();
+
+        setInterval(() => {
+            this.score = Number(document.getElementById('scoreDisplay').innerText);
+            console.log(this.score);
+            
+        }, 1000);
     },
     methods: {
+        ...mapActions(useProfileStore, ['getProfile']),
+        ...mapActions(useScoreStore, ['setGameWinScore']),
+
         goBack() {
             this.$emit('go-back');
+        },
+
+        async getData() {
+            this.userData = await this.getProfile();
         }
-    }
+    },
+
+    watch: {
+        // Watcher for score changes
+        score(newScore) {
+            if (newScore > 0) {
+                this.setGameWinScore(this.userData.id, 2, this.score)
+            }
+        }
+    },
 }
 </script>
 
@@ -49,7 +83,7 @@ button {
     font-size: 50px;
     font-weight: bold;
     font-family: sans-serif;
-    display: none;
+    /* display: none; */
 }
 
 #unity-container {
