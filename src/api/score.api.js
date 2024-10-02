@@ -10,11 +10,11 @@ export const ScoreAPI = {
   },
 
   setWinScore(data) {
-    return axios.post(`/score/winner/${data.userId}/game/${data.gameId}`);
+    return axios.post(`/score/winner/${data.userId}/game/${data.gameId}`, data.data);
   },
 
   setLoseScore(data) {
-    return axios.post(`/score/loser/${data.userId}/game/${data.gameId}`);
+    return axios.post(`/score/loser/${data.userId}/game/${data.gameId}`, data.data);
   },
 
   setTriviaScore(data) {

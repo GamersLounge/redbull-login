@@ -262,9 +262,10 @@ export default {
         .setWinScore({
           userId: queue.userId,
           gameId: queue.gameId,
+          data: {queueId: queue.id}
         })
         .then((res) => {
-          this.setFinishedQueue(queue);
+          this.queueStore.fetchQueues();
         });
     },
     async setLoseScore(queue) {
@@ -272,9 +273,10 @@ export default {
         .setLoseScore({
           userId: queue.userId,
           gameId: queue.gameId,
+          data: {queueId: queue.id}
         })
         .then((res) => {
-          this.setFinishedQueue(queue);
+          this.queueStore.fetchQueues();
         });
     },
 
@@ -307,6 +309,9 @@ export default {
     if (this.gameStore.games.length <= 0) {
       this.userStore.fetchUsers();
     }
+
+    console.log(this.queueStore);
+    
   },
 };
 </script>
