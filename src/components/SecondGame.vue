@@ -42,8 +42,6 @@ export default {
 
         setInterval(() => {
             this.score = Number(document.getElementById('scoreDisplay').innerText);
-            console.log(this.score);
-            
         }, 1000);
     },
     methods: {
@@ -83,7 +81,7 @@ button {
     font-size: 50px;
     font-weight: bold;
     font-family: sans-serif;
-    /* display: none; */
+    display: none;
 }
 
 #unity-container {
