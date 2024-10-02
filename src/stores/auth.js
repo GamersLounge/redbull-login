@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { AuthAPI, UserAPI } from "@/api/index.js";
 import router from "@/router/index.js";
+import Socket from "@/config/socket";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -9,6 +10,7 @@ export const useAuthStore = defineStore("auth", {
     accessToken: localStorage.getItem("accessToken") || null,
     refreshToken: localStorage.getItem("refreshToken") || null,
     user: null,
+    socket: null, // Add socket to the state to manage connection
 
     userSlots: [],
     userQueues: [],
@@ -16,13 +18,9 @@ export const useAuthStore = defineStore("auth", {
 
   getters: {
     isAdministrator: (state) => state.user?.roleId === 1,
-
     isGameAdmin: (state) => state.user?.roleId === 2,
-
     isTriviaAdmin: (state) => state.user?.roleId === 3,
-
     isScoreAdmin: (state) => state.user?.roleId === 4,
-
     isUser: (state) => state.user?.roleId === 5,
   },
 
@@ -31,7 +29,7 @@ export const useAuthStore = defineStore("auth", {
       this.isUserLoaded = false;
       return new Promise((resolve, reject) => {
         AuthAPI.login(form)
-          .then((res) => {
+          .then(async (res) => {
             this.isUserLoaded = true;
             this.isAuthenticated = true;
             const accessToken = res.data.accessToken;
@@ -41,6 +39,20 @@ export const useAuthStore = defineStore("auth", {
             this.setAccessToken(accessToken);
             this.setRefreshToken(refreshToken);
             this.setUser(user);
+
+            try {
+              if (!this.socket) {
+                this.socket = new Socket();
+                this.socket.connect("https://staging.esportssummit-me.com", accessToken, refreshToken);
+
+                this.socket.listenToScoreChange();
+              }
+
+              console.log(this.socket);
+
+            } catch (socketError) {
+              console.error("Socket connection error:", socketError);
+            }
 
             router.push({ name: "home" });
             resolve(res.data);
@@ -58,11 +70,24 @@ export const useAuthStore = defineStore("auth", {
       try {
         const { data } = await AuthAPI.authenticate();
 
+        if (!this.socket) {
+          this.socket = new Socket();
+          this.socket.connect("https://staging.esportssummit-me.com", this.accessToken, this.refreshToken);
+
+          this.socket.listenToScoreChange();
+
+          this.socket.listenToQueueCall();
+
+          this.socket.listenToQueueEnter();
+        }
+
+        console.log(this.socket);
+
         // Set initial user data
         this.setUser(data);
         this.isAuthenticated = true;
       } catch (error) {
-        //
+        console.error("Socket connection error:", error);
       }
     },
 
@@ -72,6 +97,12 @@ export const useAuthStore = defineStore("auth", {
       } finally {
         this.isAuthenticated = false;
         this.user = null;
+
+        // Disconnect from Socket.IO server
+        if (this.socket) {
+          this.socket.disconnect();
+          this.socket = null;
+        }
 
         // Remove token
         this.setAccessToken(null);
